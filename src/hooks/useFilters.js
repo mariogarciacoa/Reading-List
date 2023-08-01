@@ -7,10 +7,11 @@ export function useFilters () {
   const filterBooks = (list) => {
     return list.filter(item => {
       return (
-        item.book.pages >= filter.minPages &&
+
+        (item.title.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().includes(filter.search.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()) && item.pages >= filter.minPages) &&
           (
             filter.selected === 'All' ||
-            item.book.genre === filter.selected
+            item.genre === filter.selected
           )
       )
     })
@@ -36,6 +37,14 @@ export function useFilters () {
     setFilter(newFilter)
   }
 
+  const handleSearch = (e) => {
+    if (e.target.value === ' ') return
+
+    const newFilter = { ...filter, search: e.target.value }
+    window.localStorage.setItem('filter', JSON.stringify(newFilter))
+    setFilter(newFilter)
+  }
+
   useEffect(() => {
     const handleStorageChange = (e) => {
       if (e.key === 'filter') {
@@ -52,5 +61,5 @@ export function useFilters () {
     }
   }, [])
 
-  return { filter, setFilter, filterBooks, resetFilters, handleRange, handleSelect }
+  return { filter, setFilter, filterBooks, resetFilters, handleRange, handleSelect, handleSearch }
 }

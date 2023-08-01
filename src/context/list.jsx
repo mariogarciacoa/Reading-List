@@ -22,7 +22,6 @@ export function ListProvider ({ children }) {
   }
 
   const updateList = (list) => {
-    console.log('update list', list)
     dispatch({ type: 'UPDATE_LIST', payload: list })
   }
 

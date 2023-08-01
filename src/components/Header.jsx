@@ -10,7 +10,8 @@ export function Header () {
 
   return (
     <section className='header'>
-      <h1>Lista de libros</h1>
+      <h1 className='title-page'>BOOKS.</h1>
+      {/* <h2 className='subtitle-page'>List Of Books</h2> */}
       <Filters />
       {filter.status && <h2>Resultados: {foundBooks}</h2>}
     </section>

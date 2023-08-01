@@ -6,6 +6,7 @@ export function FiltersProvider ({ children }) {
   const [filter, setFilter] = useState(JSON.parse(window.localStorage.getItem('filter')) || {
     selected: 'All',
     minPages: '0',
+    search: '',
     status: false
   })
 

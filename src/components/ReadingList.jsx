@@ -11,41 +11,39 @@ export function ReadingList () {
   const booksAvailable = `${filteredBooks.length} en la lista de lectura`
 
   return (
-    <div>
+    <div className='reading-list'>
       <h2>{booksAvailable}</h2>
-      <section className='reading-list'>
-        <ul className='card-list'>
-          {hasBooksInList
-            ? (
-                filteredBooks.map((list) => {
-                  const {
-                    cover,
-                    ISBN,
-                    title,
-                    author: { name: authorName }
-                  } = list.book
+      <ul className='card-list'>
+        {hasBooksInList
+          ? (
+              filteredBooks.map((list) => {
+                const {
+                  cover,
+                  id,
+                  title,
+                  author
+                } = list
 
-                  return (
-                    <li key={ISBN} className='card-item' onClick={() => removeReadingList(ISBN)}>
-                      <img src={cover} alt='Portada del Libro' className='card-item-cover' />
-                      <div className='card-item-info'>
-                        <p className='title'>{title}</p>
-                        <p className='author'>{authorName}</p>
-                      </div>
-                    </li>
-                  )
-                })
-              )
-            : (
-              <div>
-                <span role='img' aria-label=''>
-                  No hay Libros😢
-                </span>
-              </div>
-              )}
-        </ul>
-        {hasBooksInList && <button onClick={cleanReadingList}>Vaciar Lista</button>}
-      </section>
+                return (
+                  <li key={id} className='card-item' onClick={() => removeReadingList(id)}>
+                    <img src={cover} alt='Portada del Libro' className='card-item-cover' />
+                    <div className='card-item-info'>
+                      <p className='title'>{title}</p>
+                      <p className='author'>{author}</p>
+                    </div>
+                  </li>
+                )
+              })
+            )
+          : (
+            <div>
+              <span role='img' aria-label=''>
+                No hay Libros😢
+              </span>
+            </div>
+            )}
+      </ul>
+      {hasBooksInList && <button className='card-item-btn' onClick={cleanReadingList}>Vaciar Lista</button>}
     </div>
   )
 }

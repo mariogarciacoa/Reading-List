@@ -10,40 +10,38 @@ export function ListOfBooks () {
   const booksAvailable = `${filteredBooks.length} Libros disponibles`
 
   return (
-    <div>
+    <div className='library-list'>
       <h2>{booksAvailable}</h2>
-      <section className='library-list'>
-        <ul className='card-list'>
-          {hasBooksInList
-            ? (
-                filteredBooks.map((list) => {
-                  const {
-                    cover,
-                    ISBN,
-                    title,
-                    author: { name: authorName }
-                  } = list.book
+      <ul className='card-list'>
+        {hasBooksInList
+          ? (
+              filteredBooks.map(list => {
+                const {
+                  cover,
+                  id,
+                  title,
+                  author
+                } = list
 
-                  return (
-                    <li key={ISBN} className='card-item' onClick={() => addReadingList(ISBN)}>
-                      <img src={cover} alt='Portada del Libro' className='card-item-cover' />
-                      <div className='card-item-info'>
-                        <p className='title'>{title}</p>
-                        <p className='author'>{authorName}</p>
-                      </div>
-                    </li>
-                  )
-                })
-              )
-            : (
-              <div>
-                <span role='img' aria-label=''>
-                  No hay Libros😢
-                </span>
-              </div>
-              )}
-        </ul>
-      </section>
+                return (
+                  <li key={id} className='card-item' onClick={() => addReadingList(id)}>
+                    <img src={cover} alt='Portada del Libro' className='card-item-cover' />
+                    <div className='card-item-info'>
+                      <p className='title'>{title}</p>
+                      <p className='author'>{author}</p>
+                    </div>
+                  </li>
+                )
+              })
+            )
+          : (
+            <div>
+              <span role='img' aria-label=''>
+                No hay Libros😢
+              </span>
+            </div>
+            )}
+      </ul>
     </div>
   )
 }

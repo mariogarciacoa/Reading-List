@@ -1,7 +1,7 @@
-import { library } from '../../books.json'
+import { mappedBooks } from '../constants/mappedBooks'
 
 export const initialStage = JSON.parse(window.localStorage.getItem('listOfBooks')) || {
-  list: library,
+  list: mappedBooks,
   readingList: []
 }
 
@@ -10,7 +10,7 @@ export const listReducer = (state, action) => {
   switch (type) {
     case 'ADD_READING_LIST':
     {
-      const book = state.list.find(item => item.book.ISBN === payload)
+      const book = state.list.find(item => item.id === payload)
       const newList = state.list.filter(item => item !== book)
       const newReadingList = [...state.readingList, book]
       const newState = { list: newList, readingList: newReadingList }
@@ -19,7 +19,7 @@ export const listReducer = (state, action) => {
     }
     case 'REMOVE_READING_LIST':
     {
-      const book = state.readingList.find(item => item.book.ISBN === payload)
+      const book = state.readingList.find(item => item.id === payload)
       const newList = [...state.list, book]
       const newReadingList = state.readingList.filter(item => item !== book)
       const newState = { list: newList, readingList: newReadingList }
@@ -27,8 +27,8 @@ export const listReducer = (state, action) => {
       return newState
     }
     case 'CLEAN_READING_LIST':
-      window.localStorage.setItem('listOfBooks', JSON.stringify({ list: library, readingList: [] }))
-      return { list: library, readingList: [] }
+      window.localStorage.setItem('listOfBooks', JSON.stringify({ list: mappedBooks, readingList: [] }))
+      return { list: mappedBooks, readingList: [] }
 
     case 'UPDATE_LIST':
       return payload
