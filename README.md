@@ -1,6 +1,10 @@
-# Desarrollo de una Aplicación de Lista de Libros
+# :books: Desarrollo de una Aplicación de Lista de Libros 
 
-# Funcionalidad
+# Demo
+
+:link: https://reading-list-62oqb0c95-mariogarciacoa.vercel.app/
+
+# :bulb: Funcionalidad
 
 1. **Visualización de Libros Disponibles**: La aplicación debe muestra una lista de libros disponibles que el usuario pueda seleccionar.
 
@@ -14,6 +18,4 @@
 
 6. **Sincronización entre pestañas**: Si el usuario abre la aplicación en dos pestañas diferentes, los cambios realizados en una pestaña se reflejan en la otra. Sin necesidad de usar Backend.
 
-7. **Despliegue**: La aplicación debe estar desplegada en algún servicio de hosting gratuito (Netlify, Vercel, Firebase, etc) y debe ser accesible a través de una URL pública. Indica la URL en el README.
-
-# App desarrollada con React usando los Hooks useState, useEffect, customHook, useId y useReducer.
+# :wrench: App desarrollada con React usando los Hooks useState, useEffect, customHook, useId y useReducer.
